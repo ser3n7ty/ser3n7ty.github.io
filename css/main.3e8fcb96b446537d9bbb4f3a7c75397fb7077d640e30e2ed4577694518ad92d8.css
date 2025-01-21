@@ -221,9 +221,9 @@ footer {
   border: 1px solid;
 }
 
-.footer-info {
-  padding: var(--footer-padding);
-}
+/*.footer-info {*/
+/*  padding: var(--footer-padding);*/
+/*}*/
 
 /* Title */
 .title h1 {
@@ -307,37 +307,129 @@ svg {
   background-color: #f9f2f4;
 }
 
-.highlight {
-  position: relative;
-  -webkit-overflow-scrolling: touch;
-}
-
 /* Code Blocks */
 code {
+  direction: ltr;
   background-color: #f2efef;
   padding: .1em .2em;
   font-family: 'Fira Code', monospace;
 }
 
+/* 代码块容器 */
+.code-container {
+  position: relative;
+  margin: 1rem 0;
+  background-color: #282a36;
+  /* 代码块背景颜色 */
+  border-radius: 10px;
+  /* 圆角 */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  /* 阴影效果 */
+  overflow: hidden;
+  /* 确保子元素不会超出容器 */
+}
+
+/* 代码头部 */
+.code-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 14px;
+  background-color: #28282b;
+  /* 头部背景颜色 */
+  padding: 0.5rem 1rem;
+  color: #fff;
+  font-family: 'Fira Code', monospace;
+  font-size: 14px;
+}
+
+/* 语言标签 */
+.language-label {
+  font-weight: bold;
+}
+
+.copy-code {
+  /* 移除默认背景和边框 */
+  background: none;
+  border: none;
+
+  /* 移除默认内边距 */
+  /* 移除默认字体样式 */
+  font-family: inherit;
+  color: inherit;
+
+  /* 移除默认光标样式 */
+  cursor: pointer;
+
+  border-radius: 0.25rem;
+  padding: 0.25rem 0.75rem;
+  font-size: 12px;
+  letter-spacing: 0.025rem;
+}
+
+.copy-code:hover {
+  background: rgb(159, 152, 152);
+}
+
 /* Preformatted Text */
 pre {
-  background-color: #ececec;
   overflow-x: auto;
-  padding: 1em;
+  padding: 0.5em;
 }
 
-/* Adjustments for Firefox */
-@-moz-document url-prefix() {
-  pre {
-    line-height: 103%;
-  }
+/* 代码块容器 */
+.highlight {
+  position: relative;
+  background-color: #282a36;
+  /* 背景颜色 */
+  border-radius: 10px;
+  /* 圆角 */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  overflow-x: auto;
+  /* 水平滚动 */
+
 }
 
-/* Selection in Code Blocks */
 .highlight pre ::selection {
-  background: rgba(197, 8, 8, 0.2);
-  color: inherit;
+  background: rgba(2, 215, 197, 0.311);
   display: block;
+  margin: 0;
+  /* 移除默认的外边距 */
+  padding: 0.2rem;
+  /* 内边距 */
+  font-family: 'Fira Code', monospace;
+  /* 字体 */
+  font-size: 14px;
+  /* 字体大小 */
+  line-height: 1.5;
+  /* 行高 */
+  color: #333;
+  /* 代码颜色 */
+}
+
+.highlight pre {
+  margin: 0;
+  font-family: 'Fira Code', monospace;
+  font-size: 14px;
+  line-height: 1.3;
+  color: #f8f8f2;
+  /* 代码文本颜色 */
+}
+
+.highlight pre code {
+  background-color: transparent;
+  color: inherit;
+  margin: 0;
+}
+
+/* 行号样式 */
+.highlight .lnt {
+  color: #888;
+  /* 行号颜色 */
+  margin-right: 0.5rem;
+  /* 行号与代码的间距 */
+  user-select: none;
+  /* 禁止选中行号 */
 }
 
 pre code {
@@ -345,23 +437,6 @@ pre code {
   color: inherit;
   font-size: 100%;
   padding: 0;
-}
-
-.highlight pre code[class*="language-"] {
-  -webkit-overflow-scrolling: touch;
-}
-
-.highlight pre code[class*="language-"]::before {
-  background: rgb(235, 108, 108);
-  color: white;
-  border-radius: 0.1rem 0.1rem 0.25rem 0.25rem;
-  font-size: 12px;
-  letter-spacing: 0.025rem;
-  padding: 0.1rem 0.5rem;
-  position: absolute;
-  right: 1rem;
-  text-align: right;
-  top: 0;
 }
 
 /* Tables */
@@ -387,55 +462,9 @@ table td {
   flex-wrap: wrap;
 }
 
-/* Language Labels in Code Blocks */
-.highlight pre code[class*='language-c']::before,
-.highlight pre code[class*='language-cpp']::before,
-.highlight pre code[class*='language-c++']::before {
-  content: 'C/Cpp';
-}
-
-.highlight pre code[class*='language-python']::before,
-.highlight pre code[class*='language-py']::before {
-  content: 'Python';
-}
-
-.highlight pre code[class*='language-markdown']::before,
-.highlight pre code[class*='language-md']::before {
-  content: 'Markdown';
-}
-
-.highlight pre code[class*='language-shell']::before,
-.highlight pre code[class*='language-bash']::before,
-.highlight pre code[class*='language-sh']::before {
-  content: 'Shell';
-}
-
-.highlight pre code[class=language-javaScript]::before,
-.highlight pre code[class="language-js"]::before {
-  content: "JS";
-}
-
-.highlight pre code[class*='language-yml']::before,
-.highlight pre code[class*='language-yaml']::before {
-  content: 'Yaml';
-}
-
-.highlight pre code[class*='language-json']::before {
-  content: 'Json';
-}
-
-.highlight pre code[class*='language-css']::before {
-  content: 'CSS';
-}
-
-.highlight pre code[class*='language-go']::before {
-  content: 'Go';
-}
-
-.highlight pre code[class*='language-rust']::before {
-  content: 'Rust';
-}
-
-.highlight pre code[class*='language-java']::before {
-  content: 'Java';
+/* Adjustments for Firefox */
+@-moz-document url-prefix() {
+  pre {
+    line-height: 103%;
+  }
 }
